@@ -24,13 +24,15 @@
         $('#m').val('');
         return false;
       });
-      socket.on('chat message', function(msg){
+
+      var displayMessage = function(msg){
         $('#messages').append($('<li>').text(msg));
-      }); 
+      };
+
+      socket.on('chat message', displayMessage);
+      socket.on('user', displayMessage);
     });
-  </script><script>
-  var socket = io();
-</script>
+  </script>
   <body>
     <ul id="messages"></ul>
     <form action="">
